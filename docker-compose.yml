@@ -1,0 +1,14 @@
+version: '3'
+services:
+  opa:
+    image: openpolicyagent/opa:latest
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./opa/abac.rego:/policies/abac.rego:ro
+    command:
+      - "run"
+      - "--ignore=.*"
+      - "--log-level=debug"
+      - "--server"
+      - "/policies"
